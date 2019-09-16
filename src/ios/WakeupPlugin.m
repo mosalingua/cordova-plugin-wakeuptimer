@@ -197,7 +197,8 @@ static NSString * const kWakeupPluginAlarmSettingsFile = @"alarmsettings.plist";
             alarm.userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
                               kWakeupPluginJSONWakeupValue, kWakeupPluginJSONTypeKey,
                               type, kWakeupPluginJSONAlarmTypeKey,
-                              json,  kWakeupPluginJSONExtraKey, nil];
+                              json,  kWakeupPluginJSONExtraKey,@"wakeup",@"data", nil];
+		//custom payload, to avoid breaking changes 
             
             NSLog(@"scheduling a new alarm local notification for %@", alarm.fireDate);
             
