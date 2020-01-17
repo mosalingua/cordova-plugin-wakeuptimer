@@ -48,7 +48,7 @@ static NSString * const kWakeupPluginAlarmSettingsFile = @"alarmsettings.plist";
 - (void)pluginInitialize
 {
     // watch for local notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wup_onLocalNotification:) name:CDVPluginHandleOpenURLNotification object:nil]; // if app is in foreground
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wup_onLocalNotification:) name:@"wakeup_notification" object:nil]; // if app is in foreground
     
     [UIDevice currentDevice].batteryMonitoringEnabled=YES; // required to determine if device is charging
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wup_onBatteryStateDidChange:) name:UIDeviceBatteryStateDidChangeNotification object:nil];
@@ -448,7 +448,7 @@ static NSString * const kWakeupPluginAlarmSettingsFile = @"alarmsettings.plist";
 
 - (void)dispose {
     NSLog(@"Wakeup Plugin disposing");
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:CDVPluginHandleOpenURLNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wakeup_notification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceBatteryStateDidChangeNotification object:nil];
     [super dispose];
 }
